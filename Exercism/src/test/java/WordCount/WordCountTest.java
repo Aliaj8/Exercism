@@ -113,4 +113,29 @@ public class WordCountTest {
         actual = wordCount.phrase("First: don't laugh. Then: don't cry.");
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    void multiple_spaces_not_detected_as_a_word() {
+        WordCount wordCount = new WordCount();
+        Map<String, Integer> expected = new HashMap<>();
+        expected.put("multiple", 1);
+        expected.put("whitespaces", 1);
+
+        Map<String, Integer> actual = new HashMap<>();
+        actual = wordCount.phrase(" multiple   whitespaces");
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void alternating_word_seperators_not_detected_AsAWord() {
+        WordCount wordCount = new WordCount();
+        Map<String, Integer> expected = new HashMap<>();
+        expected.put("one", 1);
+        expected.put("two", 1);
+        expected.put("three", 1);
+
+        Map<String, Integer> actual = new HashMap<>();
+        actual = wordCount.phrase(",\n,one,\n ,two \n 'three'");
+        Assertions.assertEquals(expected, actual);
+    }
 }
