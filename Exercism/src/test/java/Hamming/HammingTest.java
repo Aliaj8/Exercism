@@ -31,7 +31,7 @@ public class HammingTest {
     }
 
     @Test
-    void validates_first_strand_not _longer() {
+    void validates_first_strand_not_longer() {
         Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> new Hamming("ATA", "AGTG"))
                 .withMessage("leftStrand and rightStrand must be of equal length.");
